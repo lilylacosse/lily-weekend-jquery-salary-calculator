@@ -1,0 +1,14 @@
+h1
+h2
+input
+button
+
+table, th, 
+td {
+    font-size: 18px;
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px 14px;
+}
