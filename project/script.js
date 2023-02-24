@@ -9,14 +9,27 @@ let allEmployees = [];
 
 function emptyTable() {
   console.log("In emptyTable()");
-  $("#original-message").empty();
+  $(".tr").empty();
+}
+
+function render() {
+  console.log("In render()");
+  emptyTable();
+  // we are trying to render an array, so we have to loop through it
+  for (let employee of allEmployees) {
+    $("#data-table").append(`<tr class="tr">
+        <td>${employee.firstName}</td>
+        <td>${employee.lastName}</td>
+        <td>${employee.id}</td>
+        <td>${employee.title}</td>
+        <td>${employee.annualSalary}</td>
+        </tr>`);
+  }
 }
 
 function submitEmployee() {
-  console.log("In submitEmployee()");
-  // empty original form data
-  // i.e. "no employees yet!"
-  emptyTable();
+  console.log("START OF submitEmployee()");
+
   // gather form data
   const addFirstName = $("#first-name").val();
   const addLastName = $("#last-name").val();
@@ -24,19 +37,23 @@ function submitEmployee() {
   const addTitle = $("#title").val();
   const addAnnualSalary = $("#annual-salary").val();
 
-  let newEmployee = {
-    firstName: addFirstName,
-    lastName: addLastName,
-    id: addID,
-    title: addTitle,
-    annualSalary: addAnnualSalary,
-  };
-  console.log("newEmployee:", newEmployee);
+  if (addFirstName && addLastName && addID && addTitle && addAnnualSalary) {
+    let newEmployee = {
+      firstName: addFirstName,
+      lastName: addLastName,
+      id: addID,
+      title: addTitle,
+      annualSalary: addAnnualSalary,
+    };
+    console.log("newEmployee:", newEmployee);
 
-  allEmployees.push(newEmployee);
-}
+    allEmployees.push(newEmployee);
+    console.log("allEmployees update:", allEmployees);
 
-function emptyTable() {
-  console.log("In emptyTable()");
-  $("#original-message").empty();
+    render();
+  } else {
+    alert("Please Enter Employee Data");
+  }
+
+  console.log("END OF submitEmployee");
 }
