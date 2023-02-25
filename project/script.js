@@ -9,7 +9,7 @@ let allEmployees = [];
 
 function emptyTable() {
   console.log("In emptyTable()");
-  $(".tr").empty();
+  $(".tr").remove();
 }
 
 function render() {
