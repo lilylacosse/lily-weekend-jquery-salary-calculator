@@ -11,6 +11,9 @@ function onReady() {
 
 let allEmployees = [];
 let totalMonthlyPayroll = 0;
+let employeeToDelete = $(this).closest("tr");
+let valueMatchID = employeeToDelete.children().eq(2).text();
+let deletedEmployee = {};
 
 function submitEmployee() {
   console.log("START OF submitEmployee()");
@@ -39,7 +42,7 @@ function submitEmployee() {
 
   calcMonthlyCosts();
 
-  render();
+  renderSubmit();
 
   //   } else {
   //     alert("Please Enter Employee Data");
@@ -74,7 +77,7 @@ function calcMonthlyCosts() {
   return totalMonthlyPayroll;
 }
 
-function render() {
+function renderSubmit() {
   console.log("START render()");
   emptyTable();
 
@@ -103,7 +106,7 @@ function deleteEmployee() {
   console.log("START deleteEmployee():");
 
   employeeToDelete = $(this).closest("tr");
-  console.log(employeeToDelete);
+  console.log("Employee to Delete:", employeeToDelete);
   valueMatchID = employeeToDelete.children().eq(2).text();
 
   console.log("Employee to Delete:", valueMatchID);
@@ -115,12 +118,15 @@ function deleteEmployee() {
   for (let employee of allEmployees) {
     if (valueMatchID !== employee.id) {
       newAllEmployees.push(employee);
+    } else {
+      deletedEmployee = employee;
     }
   }
   allEmployees = newAllEmployees;
-  console.log(allEmployees);
+  console.log("allEmployees[]", allEmployees);
+  console.log("deletedEmployee:", deletedEmployee);
 
-  render();
+  renderSubmit();
   console.log("END deleteEmployee()");
 
   return valueMatchID;
@@ -128,15 +134,14 @@ function deleteEmployee() {
 
 function subtractMonthlyCosts() {
   console.log("START subtractMonthlyCosts() ");
+  console.log("valueMatchId:", valueMatchID);
+  console.log("deletedEmployee:", deletedEmployee);
 
-  for (let employee of allEmployees) {
-    console.log("employee id:", employee.id);
-    console.log("valueMatchId:", valueMatchID);
-    if (valueMatchID === employee.id) {
-      console.log("See YA Sucker");
-      totalMonthlyPayroll -= Number(employee.annualSalary) / 12;
-    }
+  if (valueMatchID === deletedEmployee.id) {
+    console.log("This salary will be deleted", deletedEmployee.annualSalary);
+    totalMonthlyPayroll -= Number(deletedEmployee.annualSalary) / 12;
   }
+
   console.log(totalMonthlyPayroll);
 
   $("#total-monthly-payroll").html(`$${totalMonthlyPayroll}`);
