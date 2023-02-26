@@ -1,12 +1,35 @@
-h1
-h2
-input
-button
+body {
+    background-color: #eddfb6;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: none;
+    text-align: center;
+}
+
+h1, h2 {
+    background-color: #4f8b8c;
+
+   
+    
+}
+input {
+    font-style:inherit;
+    font-size: large ;
+}
+button {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+}
+#submit-btn {
+    border-radius: 0px;
+    margin: 20px;
+}
 
 table, th, 
 td {
     font-size: 18px;
     border: 1px solid black;
+    margin: auto;
+    margin: auto;
 }
 
 th, td {

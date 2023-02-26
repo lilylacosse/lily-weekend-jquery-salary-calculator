@@ -23,8 +23,9 @@ function submitEmployee() {
   const addLastName = $("#last-name").val();
   const addID = $("#id").val();
   const addTitle = $("#title").val();
-  const addAnnualSalary = $("#annual-salary").val();
+  const addAnnualSalary = Number($("#annual-salary").val());
 
+  console.log("addAnnualSalary:", addAnnualSalary);
   //   if (addFirstName && addLastName && addID && addTitle && addAnnualSalary) {
   let newEmployee = {
     firstName: addFirstName,
@@ -42,7 +43,7 @@ function submitEmployee() {
 
   calcMonthlyCosts();
 
-  renderSubmit();
+  render();
 
   //   } else {
   //     alert("Please Enter Employee Data");
@@ -69,7 +70,12 @@ function calcMonthlyCosts() {
     totalMonthlyPayroll += Number(employee.annualSalary) / 12;
   }
   console.log(totalMonthlyPayroll);
-  $("#total-monthly-payroll").html(`$${totalMonthlyPayroll}`);
+  $("#total-monthly-payroll").html(
+    `${totalMonthlyPayroll.toLocaleString("en", {
+      style: "currency",
+      currency: "USD",
+    })}`
+  );
   if (totalMonthlyPayroll > 20000) {
     $("#h2-total-payroll").css({ "background-color": "red" });
   }
@@ -77,7 +83,7 @@ function calcMonthlyCosts() {
   return totalMonthlyPayroll;
 }
 
-function renderSubmit() {
+function render() {
   console.log("START render()");
   emptyTable();
 
@@ -87,9 +93,12 @@ function renderSubmit() {
     $("#data-table").append(`<tr class="tr">
         <td>${employee.firstName}</td>
         <td>${employee.lastName}</td>
-        <td id = "3">${employee.id}</td>
+        <td>${employee.id}</td>
         <td>${employee.title}</td>
-        <td>${employee.annualSalary}</td>
+        <td>${employee.annualSalary.toLocaleString("en", {
+          style: "currency",
+          currency: "USD",
+        })}</td>
         <td><button id="delete-btn">Delete</button></td>
         </tr>`);
   }
@@ -126,7 +135,7 @@ function deleteEmployee() {
   console.log("allEmployees[]", allEmployees);
   console.log("deletedEmployee:", deletedEmployee);
 
-  renderSubmit();
+  render();
   console.log("END deleteEmployee()");
 
   return valueMatchID;
@@ -142,9 +151,14 @@ function subtractMonthlyCosts() {
     totalMonthlyPayroll -= Number(deletedEmployee.annualSalary) / 12;
   }
 
-  console.log(totalMonthlyPayroll);
+  console.log("totalMonthlyPayroll Now:", totalMonthlyPayroll);
 
-  $("#total-monthly-payroll").html(`$${totalMonthlyPayroll}`);
+  $("#total-monthly-payroll").html(
+    `${totalMonthlyPayroll.toLocaleString("en", {
+      style: "currency",
+      currency: "USD",
+    })}`
+  );
 
   if (totalMonthlyPayroll < 20000) {
     $("#h2-total-payroll").css({ "background-color": "white" });
