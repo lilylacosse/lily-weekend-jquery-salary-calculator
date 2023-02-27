@@ -6,7 +6,7 @@ function onReady() {
   $("#submit-btn").on("click", submitEmployee);
 
   $("#data-table").on("click", "#delete-btn", deleteEmployee);
-  $("#data-table").on("click", "#delete-btn", subtractMonthlyCosts);
+  // $("#data-table").on("click", "#delete-btn", subtractMonthlyCosts);
 }
 
 let allEmployees = [];
@@ -135,6 +135,7 @@ function deleteEmployee() {
   console.log("allEmployees[]", allEmployees);
   console.log("deletedEmployee:", deletedEmployee);
 
+  subtractMonthlyCosts();
   render();
   console.log("END deleteEmployee()");
 
@@ -161,7 +162,7 @@ function subtractMonthlyCosts() {
   );
 
   if (totalMonthlyPayroll < 20000) {
-    $("#h2-total-payroll").css({ "background-color": "white" });
+    $("#h2-total-payroll").css({ "background-color": "#4f8b8c" });
   }
   console.log("END subtractMonthlyCosts ");
 }
