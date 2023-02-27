@@ -26,28 +26,28 @@ function submitEmployee() {
   const addAnnualSalary = Number($("#annual-salary").val());
 
   console.log("addAnnualSalary:", addAnnualSalary);
-  //   if (addFirstName && addLastName && addID && addTitle && addAnnualSalary) {
-  let newEmployee = {
-    firstName: addFirstName,
-    lastName: addLastName,
-    id: addID,
-    title: addTitle,
-    annualSalary: addAnnualSalary,
-  };
-  console.log("newEmployee:", newEmployee);
 
-  allEmployees.push(newEmployee);
-  console.log("allEmployees update:", allEmployees);
+  if (addFirstName && addLastName && addID && addTitle && addAnnualSalary) {
+    let newEmployee = {
+      firstName: addFirstName,
+      lastName: addLastName,
+      id: addID,
+      title: addTitle,
+      annualSalary: addAnnualSalary,
+    };
+    console.log("newEmployee:", newEmployee);
 
-  resetInputs();
+    allEmployees.push(newEmployee);
+    console.log("allEmployees update:", allEmployees);
 
-  calcMonthlyCosts();
+    resetInputs();
 
-  render();
+    calcMonthlyCosts();
 
-  //   } else {
-  //     alert("Please Enter Employee Data");
-  //   }
+    render();
+  } else {
+    alert("Please Enter Employee Data");
+  }
 
   console.log("END OF submitEmployee");
 }
