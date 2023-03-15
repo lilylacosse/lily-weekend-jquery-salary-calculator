@@ -13,12 +13,10 @@ I was tasked with creating a monthly payroll calculator. Desire components inclu
 
 I created a JavaScript program written using jQuery to manipulate the DOM based on user interactions with an HTML form.
 
-I used jQuery to track user interaction with the DOM buttons, &
-JavaScript & jQuery to create functions to manipulate the user input data
-
-When the user submits an employee through the form, the code creates a new object representing the employee and pushes it onto the global allEmployees array. The code then clears the form inputs, calculates the new total monthly payroll, and re-renders the table with the updated employee data.
-When the user clicks the "Delete" button next to an employee in the table, the code first identifies the employee to be deleted by finding its ID value in the table. The code then removes the corresponding table row, removes the corresponding employee object from the allEmployees array, saves the deleted employee object to a new variable, recalculates the total monthly payroll by subtracting the monthly salary of the deleted employee, and re-renders the table with the updated data.
-When an employee is added, the code also checks if the new total monthly payroll is greater than $20,000, and if so, sets the background color to red to indicate that the payroll is over budget. If the payroll decreases under $20,000, the background color is re-sets to white.
+When the user submits an employee ,a new object representing the employee is created and pushed to the global allEmployees array. 
+The form inputs are cleared, the new total monthly payroll is calculated, and the DOM displays the updated information.
+When the user deletes an employee, the corresponding row and monthly payroll are deleted. 
+If monthly payroll exceeds $20,000, the css changes to indicate a problem. If the payroll is reduced, the css changes back to normal 
 
 ## Usage
 
@@ -35,7 +33,7 @@ JQuery
 
 ## Acknowledgement
 
-Thanks to [Prime Digital Academy](www.primeacademy.io) who taught me how to use jQuery!
+Thanks to Prime Digital Academy (www.primeacademy.io) who taught me how to use jQuery!
 
 ## Support
 
